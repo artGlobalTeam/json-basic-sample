@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  
+  <meta charset="utf-8" />
+  <title>JSONサンプル</title>
+  
+</head>
+<body>
+  <div class="container">
+        
+    <!-- ランキング表示用のテーブル要素を準備 -->
+    <table id="ranking" class="table table-striped table-hover"></table>
+    
+  </div>
+  
+
+  <!-- fetchに対応していないブラウザ用のJSライブラリ -->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.1/fetch.min.js"></script>-->
+
+  <script>
+    window.addEventListener('load', function() {
+
+      // 最初に実行される処理を書く
+      getAppList();
+
+    });
+
+
+    function getAppList() {
+    
+      // 「RSS Generator」で生成したURL
+      var url = 'https://itunes.apple.com/jp/rss/topfreeapplications/limit=10/json';
+
+      fetch(url)
+      .then(function (data) {
+          return data.json(); // 読み込むデータをJSONに設定
+      })
+      .then(function (json) {
+      
+        console.log(json); // JSONデータをコンソールログに出力
+      
+      });
+    }
+  </script>
+</body>
+</html>
